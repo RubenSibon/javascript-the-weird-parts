@@ -6,6 +6,6 @@ It is a great course that really helps you to understand JavaScript as a program
 
 He explains a lot of those concepts by looking and dissecting the code of the jQuery library which I found to be very educative and interesting. I strongly recommend any intermediary (JavaScript) programmer to dissect a popular library line by line to increase your understanding of the language.
 
-At the end of the course you get to build your own 'mini' library of which you can inspect my solution here.
+At the end of the course you get to build your own 'mini' library of which you can inspect my solution here: [https://rjsibon.github.io/javascript-the-weird-parts/](https://rjsibon.github.io/javascript-the-weird-parts/).
 
 The course is recommended for intermediary JavaScript developers and programmers coming from other languages.
