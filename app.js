@@ -1,4 +1,4 @@
-(function() {
+;(function() {
 
     var g = G$('Ruben', 'Sibon', 'nl');
 

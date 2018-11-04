@@ -1,4 +1,4 @@
-(function(global, $) {
+;(function(global, $) {
 
     /**
      * Greetr constructor function.
@@ -141,7 +141,7 @@
 
             // Make method chainable.
             return this;
-        }
+        },
 
     };
 
@@ -150,6 +150,8 @@
      * i.e. the actual object is created here.
      */ 
     Greetr.init = function(firstName, lastName, language) {
+
+        // Use self var instead of `this` to avoid confusion with setting stuff on the function constructor.
         var self = this;
         
         self.firstName = firstName || '';
