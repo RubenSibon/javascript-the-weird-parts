@@ -116,14 +116,16 @@
     $('#langSelect').on('change', function(event) {
         event.preventDefault();
 
-        g.setLang(event.target.value);
+        if (event.target.value !== currentLanguage) {
+            currentLanguage = event.target.value;
 
-        currentLanguage = event.target.value;
+            g.setLang(event.target.value);
 
-        translateStrings(event.target.value);
+            translateStrings(event.target.value);
 
-        // Remove any existing welcome message.
-        resetLogin();
+            // Remove any existing welcome message.
+            resetLogin();
+        }
     });
 
     $('#login').on('click', function(event) {
