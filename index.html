@@ -6,6 +6,19 @@
     </head>
 
     <body>
+        <form action="submit" id="loginForm">
+            <select name="langSelect" id="langSelect">
+                <option value="en" selected="selected">English</option>
+                <option value="es">Español (Spanish)</option>
+                <option value="nl">Nederlands (Dutch)</option>
+            </select>
+
+            <input type="text" id="firstName" placeholder="Your given name" required>
+            <input type="text" id="lastName" placeholder="Your family name" required>
+
+            <input type="button" id="login" value="Login" />
+        </form>
+
         <h1 id="toGreet"></h1>
 
         <script src="jquery-1.11.1.js"></script>
