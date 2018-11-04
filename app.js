@@ -11,6 +11,7 @@
         loggedIn = false;
 
         $('.greeting').removeClass('appeared');
+        $('.prompt').removeClass('hide');
 
         if (document.querySelector('#toGreet').innerHTML) {
             document.querySelector('#toGreet').innerHTML = '';
@@ -64,6 +65,7 @@
 
             if (!loggedIn) {
                 $('.greeting').addClass('appeared');
+                $('.prompt').addClass('hide');
             }
 
             loggedIn = true;
