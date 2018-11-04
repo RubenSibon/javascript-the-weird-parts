@@ -140,6 +140,7 @@
 
             .form-error {
                 grid-area: error;
+                color: tomato;
             }
 
             .submit {
@@ -154,26 +155,26 @@
     <body>
         <main class="app">
             <form id="loginForm" class="loginform card">
-                <h3 class="form-title">Enter your details:</h3>
+                <h3 class="form-title" data-translate="formTitle">Enter your details:</h3>
                 <select name="langSelect" id="langSelect" class="language">
-                    <option value="en" selected="selected">English</option>
-                    <option value="es">Español (Spanish)</option>
-                    <option value="nl">Nederlands (Dutch)</option>
+                    <option value="en" data-translate="langEN" selected>English</option>
+                    <option value="es" data-translate="langES">Español (Spanish)</option>
+                    <option value="nl" data-translate="langNL">Nederlands (Dutch)</option>
                 </select>
 
-                <input type="text" id="firstName" placeholder="First name" class="input-firstname" required>
-                <input type="text" id="lastName" placeholder="Last name" class="input-lastname" required>
-                <input type="text" id="age" placeholder="Age" size="3" class="input-age">
+                <input type="text" id="firstName" placeholder="First name" class="input-firstname" data-translate="firstName" required>
+                <input type="text" id="lastName" placeholder="Last name" class="input-lastname" data-translate="lastName" required>
+                <input type="text" id="age" placeholder="Age" size="3" class="input-age" data-translate="age">
 
-                <input type="submit" id="login" value="Login" class="submit" />
+                <input type="submit" id="login" value="Login" class="submit" data-translate="login" />
             </form>
 
             <section class="content card">
                 <div class="greeting">
                     <h1 id="toGreet"></h1>
-                    <p>Welcome in the app.</p>
+                    <p data-translate="welcomeMsg">Welcome in the app.</p>
                 </div>
-                <div class="prompt">
+                <div class="prompt" data-translate="loginPrompt">
                     <p>Log in to see app's content.</p>
                 </div>
             </section>
