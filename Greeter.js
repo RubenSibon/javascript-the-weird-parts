@@ -3,31 +3,35 @@
     /**
      * Greetr constructor function.
      * @constructor
-     * @param {string} firstName 
-     * @param {string} lastName 
-     * @param {string} language 
+     * @param {string} firstName
+     * @param {string} lastName
+     * @param {string} language
      */
-    var Greetr = function(firstName, lastName, language) {
-        return new Greetr.init(firstName, lastName, language);
+    var Greetr = function(firstName, lastName, language, age) {
+        return new Greetr.init(firstName, lastName, language, age);
     }
 
-    /**
-     * Properties of Greetr.
-     */
+    /** Supported languages. */
     var supportedLangs = ['en', 'es', 'nl'];
 
+    /** Whether language is formal or not. */
+    var formalLanguage = false;
+
+    /** Default informal greetings. */
     var greetings = {
         en: 'Hello',
         es: 'Hola',
         nl: 'Hallo'
     };
 
+    /** Default formal greetings. */
     var formalGreeting = {
         en: 'Greetings',
         es: 'Saludos',
         nl: 'Gegroet'
     };
 
+    /** Logged in messages. */
     var logMessages = {
         en: 'Logged in',
         es: 'Inicio sesion',
@@ -71,7 +75,7 @@
 
         /**
          * Greet method. Call either formal or informal greeting methods.
-         * @param {boolean} formal 
+         * @param {boolean} formal
          */
         greet: function(formal) {
             var msg;
@@ -84,7 +88,7 @@
             }
 
             if (console) {
-                console.log(msg);
+                this.log();
             }
 
             // Make method chainable.
@@ -97,9 +101,13 @@
         /**
          * Log fullname to console.
          */
-        log: function() {
+        log: function(msg) {
             if (console) {
-                console.log(logMessages[this.language] + ': ' + this.fullName());
+                if (msg) {
+                    console.log(msg);
+                } else {
+                    console.log(logMessages[this.language] + ': ' + this.fullName());
+                }
             }
 
             // Make method chainable.
@@ -108,7 +116,7 @@
 
         /**
          * Set language that greeting should be returned in.
-         * @param {string} lang 
+         * @param {string} lang
          */
         setLang: function(lang) {
             this.language = lang;
@@ -120,9 +128,24 @@
         },
 
         /**
+         * Set language to formal or informal.
+         * @param {string} lang
+         */
+        setFormal: function(formal) {
+            if (formal.toString() === 'undefined' || formal.toString() === 'true') {
+                this.isFormal = true;
+            } else {
+                this.isFormal = false;
+            }
+
+            // Make method chainable.
+            return this;
+        },
+
+        /**
          * Insert greeting in HTML.
-         * @param {string} selector 
-         * @param {boolean} formal 
+         * @param {string} selector
+         * @param {boolean} formal
          */
         HTMLGreeting: function(selector, formal) {
             var htmlMsg;
@@ -135,7 +158,9 @@
                 throw 'Missing jQuery selector';
             }
 
-            htmlMsg = this.greet(formal);
+            formalLanguage = this.setFormal(formal).isFormal;
+
+            htmlMsg = this.greet(formalLanguage);
 
             $(selector).html(htmlMsg);
 
@@ -146,24 +171,25 @@
     };
 
     /**
-     * Init function to instantiate prototype (class);
+     * Init function to instantiate prototype (class), 
      * i.e. the actual object is created here.
      */ 
-    Greetr.init = function(firstName, lastName, language) {
+    Greetr.init = function(firstName, lastName, language, age) {
 
-        // Use self var instead of `this` to avoid confusion with setting stuff on the function constructor.
+        // Use self instead of `this` to avoid confusion with setting stuff on the function constructor.
         var self = this;
         
         self.firstName = firstName || '';
         self.lastName = lastName || '';
         self.language = language || 'en';
+        self.age = age || NaN;
 
         self.validate();
     };
 
     /**
      * Make Greetr.init refer to the prototype of the function constructor.
-     * This we do not have to use the `new` keyword.
+     * This way we do not have to use the `new` keyword.
      */ 
     Greetr.init.prototype = Greetr.prototype;
 

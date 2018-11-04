@@ -3,33 +3,134 @@
     <head>
         <meta charset="utf-8">
         <title>Let's Build a Framework / Library! :: JavaScript: The Weird Parts</title>
+
+        <style>
+            *,
+            html {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                line-height: 1.5;
+            }
+
+            input,
+            select {
+                margin: .5rem 0 0;
+                min-width: 100px;
+                height: 2rem;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+
+            }
+
+            .app {
+                display: grid;
+                max-width: 960px;
+                margin: 100px auto;
+                grid-gap: 2rem;
+                grid-template-columns: 3fr 6fr;
+            }
+
+            .content {
+                display: flex;
+                justify-content: center;
+                /* align-items: center; */
+                color: white;
+            }
+
+            .loginform {
+                display: grid;
+                grid-template-areas:
+                    "formtitle formtitle formtitle"
+                    "select select select"
+                    "firstname lastname age"
+                    "submit submit submit"
+                    "error error error"
+                ;
+            }
+
+            .greeting {
+                transition: color 1s ease-in;
+                color: white;
+            }
+
+            .appeared {
+                color: black;
+            }
+
+            .form-title {
+                grid-area: formtitle;
+            }
+
+            .language {
+                grid-area: select;
+            }
+
+            .input-firstname {
+                grid-area: firstname;
+            }
+
+            .input-lastname {
+                grid-area: lastname;
+            }
+
+
+            .input-age {
+                grid-area: age;
+                min-width: 25px;
+            }
+
+            .form-error {
+                grid-area: error;
+            }
+
+            .submit {
+                grid-area: submit;
+            }
+            
+        </style>
     </head>
 
     <body>
-        <form action="submit" id="loginForm">
-            <select name="langSelect" id="langSelect">
-                <option value="en" selected="selected">English</option>
-                <option value="es">Español (Spanish)</option>
-                <option value="nl">Nederlands (Dutch)</option>
-            </select>
+        <main class="app">
+            <form id="loginForm" class="loginform">
+                <h3 class="form-title">Enter your details:</h3>
+                <select name="langSelect" id="langSelect" class="language">
+                    <option value="en" selected="selected">English</option>
+                    <option value="es">Español (Spanish)</option>
+                    <option value="nl">Nederlands (Dutch)</option>
+                </select>
 
-            <input type="text" id="firstName" placeholder="Your given name" required>
-            <input type="text" id="lastName" placeholder="Your family name" required>
+                <input type="text" id="firstName" placeholder="First name" class="input-firstname" required>
+                <input type="text" id="lastName" placeholder="Last name" class="input-lastname" required>
+                <input type="text" id="age" placeholder="Age" size="3" class="input-age">
 
-            <input type="button" id="login" value="Login" />
-        </form>
+                <input type="submit" id="login" value="Login" class="submit" />
+            </form>
 
-        <h1 id="toGreet"></h1>
+            <section class="content">
+                <h1 id="toGreet" class="greeting"></h1>
+            </section>
 
-        <script src="jquery-1.11.1.js"></script>
-        <script src="Greeter.js"></script>
-        <script src="app.js"></script>
+            <script src="jquery-1.11.1.js"></script>
+            <script src="Greeter.js"></script>
+            <script src="app.js"></script>
 
-        <noscript>
-            <center>
-                <h3>JavaScript is disabled.</h3>
-                <p>This app requires JavaScript to run. Please use a web browser with JavaScript enabled.</p>
-            </center>
-        </noscript>
+            <noscript>
+                <div class="center">
+                    <h3>JavaScript is disabled.</h3>
+                    <p>This app requires JavaScript to run. Please use a web browser with JavaScript enabled.</p>
+                </div class="center">
+            </noscript>
+        </main>
     </body>
 </html>
