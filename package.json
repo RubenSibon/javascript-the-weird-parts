@@ -1,0 +1,34 @@
+{
+  "name": "javascript-the-weird-parts",
+  "version": "1.0.0",
+  "description": "Final assignent from Anthony Alicea's 'JavaScript: Understanding the Weird Parts' ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjsibon/javascript-the-weird-parts.git"
+  },
+  "keywords": [
+    "demo",
+    "javascript",
+    "tutorial",
+    "course"
+  ],
+  "author": "Ruben Sibon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjsibon/javascript-the-weird-parts/issues"
+  },
+  "homepage": "https://github.com/rjsibon/javascript-the-weird-parts#readme",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-htmlmin": "^3.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-jsdoc": "^2.3.0",
+    "load-grunt-tasks": "^4.0.0"
+  }
+}
