@@ -19,6 +19,7 @@
             langES: 'Español (Spanish)',
             langNL: 'Nederlands (Dutch)',
             login: 'Login',
+            logout: 'Logout',
             formError: 'First and last name are required.',
             welcomeMsg: 'Welcome in the app.',
             loginPrompt: 'Log in to see app\'s content.'
@@ -32,6 +33,7 @@
             langES: 'Español',
             langNL: 'Nederlands (Holandés)',
             login: 'Iniciar sesión',
+            logout: 'Cerrar sesión',
             formError: 'Se requieren nombre y apellido.',
             welcomeMsg: 'Bienvenido en la aplicación.',
             loginPrompt: 'Inicia sesión para ver el contenido de la aplicación.'
@@ -45,9 +47,10 @@
             langES: 'Español (Spaans)',
             langNL: 'Nederlands',
             login: 'Inloggen',
+            logout: 'Uitloggen',
             formError: 'Voor- en achternaam zijn vereist.',
             welcomeMsg: 'Welkom in the app.',
-            loginPrompt: 'Log in om de inhoud te zien.'
+            loginPrompt: null // 'Log in om de inhoud te zien.'
         }
     };
 
@@ -55,11 +58,10 @@
     function resetLogin() {
         loggedIn = false;
 
-        $('.greeting').removeClass('appeared');
-        $('.prompt').removeClass('hide');
+        $('.card').removeClass('is-flipped');
 
         if (document.querySelector('#toGreet').innerHTML) {
-            document.querySelector('#toGreet').innerHTML = '';
+            // document.querySelector('#toGreet').innerHTML = '';
         }
     }
 
@@ -86,7 +88,7 @@
             let oldString;
 
             // Get translation for string.
-            if (typeof string !== 'undefined') {
+            if (strings[lang][string] !== null && typeof strings[lang][string] !== 'undefined') {
                 newString = strings[lang][string];
             } else {
                 // Fallback to English.
@@ -122,9 +124,6 @@
             g.setLang(event.target.value);
 
             translateStrings(event.target.value);
-
-            // Remove any existing welcome message.
-            resetLogin();
         }
     });
 
@@ -150,8 +149,7 @@
             g.HTMLGreeting('#toGreet', g.age > 29);
 
             if (!loggedIn) {
-                $('.greeting').addClass('appeared');
-                $('.prompt').addClass('hide');
+                $('.card').toggleClass('is-flipped');
             }
 
             loggedIn = true;
@@ -164,6 +162,12 @@
                 formError();
             }
         }
+    });
+
+    $('#logout').on('click', function(event) {
+        event.preventDefault();
+
+        resetLogin();
     });
 
 })();

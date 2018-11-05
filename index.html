@@ -40,20 +40,13 @@
 
             }
 
-            .card {
-                box-shadow: 0 2px 2px #999;
-                border: 1px solid #ddd;
-                border-radius: .5rem;
-                background-color: white;
-            }
-
             .app {
                 display: grid;
                 max-width: 960px;
                 margin: 1rem auto;
                 grid-gap: 2rem;
                 grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
-
+                perspective: 1000px;
             }
 
             @media screen and (min-width: 768px) {
@@ -62,25 +55,62 @@
                 }
             }
 
+            .card,
+            .card-back,
+            .card-front {
+                margin: 0 auto;
+                width: 100%;
+                max-width: 640px;
+                min-height: 300px;
+            }
+
+            .card {
+                position: relative;
+
+                /* Transition properties */
+                transition: 1s;
+                transform-style: preserve-3d;
+            }
+
+            .card-back,
+            .card-front {
+                position: absolute;
+                top: 0;
+                left: 0;
+                box-shadow: 0 2px 2px #999;
+                border: 1px solid #ddd;
+                border-radius: .5rem;
+                background-color: white;
+
+                /* Transition properties */
+                backface-visibility: hidden;
+            }
+
+            .card-front {
+                /* Transition properties */
+                transform: rotateX(0deg);
+                z-index: 2;
+            }
+
+            .card-back {
+                /* Transition properties */
+                transform: rotateX(180deg);
+            }
+
+            .is-flipped {
+                transform: rotateX(180deg);
+            }
+
             .content {
                 display: flex;
                 flex-wrap: wrap;
                 padding: 1rem 1rem 2rem;
-                width: 100%;
                 justify-content: center;
-                color: white;
             }
 
             .greeting {
                 flex: 1 1 100%;
-                height: 1px;
                 text-align: center;
-                transition:
-                    opacity 1s ease-in,
-                    color 1s ease-in;
-                visibility: hidden;
-                opacity: 0;
-                color: white;
             }
 
             .prompt {
@@ -88,19 +118,6 @@
                 height: auto;
                 text-align: center;
                 color: #999;
-            }
-
-            .appeared {
-                height: auto;
-                visibility: visible;
-                opacity: 1;
-                color: black;
-            }
-
-            .hide {
-                height: 1px;
-                visibility: hidden;
-                opacity: 0;
             }
 
             .loginform {
@@ -114,7 +131,6 @@
                     "error error error"
                 ;
                 padding: 1rem 1rem 2rem;
-                width: 100%;
             }
 
             .form-title {
@@ -148,36 +164,35 @@
                 border-color: orange;
                 background-color: orange;
             }
-            
         </style>
     </head>
 
     <body>
         <main class="app">
-            <form id="loginForm" class="loginform card">
-                <h3 class="form-title" data-translate="formTitle">Enter your details:</h3>
-                <select name="langSelect" id="langSelect" class="language">
-                    <option value="en" data-translate="langEN" selected>English</option>
-                    <option value="es" data-translate="langES">Español (Spanish)</option>
-                    <option value="nl" data-translate="langNL">Nederlands (Dutch)</option>
-                </select>
+            <div class="card is-flippable">
+                <form id="loginForm" class="loginform card-front">
+                    <h3 class="form-title" data-translate="formTitle">Enter your details:</h3>
+                    <select name="langSelect" id="langSelect" class="language">
+                        <option value="en" data-translate="langEN" selected>English</option>
+                        <option value="es" data-translate="langES">Español (Spanish)</option>
+                        <option value="nl" data-translate="langNL">Nederlands (Dutch)</option>
+                    </select>
 
-                <input type="text" id="firstName" placeholder="First name" class="input-firstname" data-translate="firstName" required>
-                <input type="text" id="lastName" placeholder="Last name" class="input-lastname" data-translate="lastName" required>
-                <input type="text" id="age" placeholder="Age" size="3" class="input-age" data-translate="age">
+                    <input type="text" id="firstName" placeholder="First name" class="input-firstname" data-translate="firstName" required>
+                    <input type="text" id="lastName" placeholder="Last name" class="input-lastname" data-translate="lastName" required>
+                    <input type="text" id="age" placeholder="Age" size="3" class="input-age" data-translate="age">
 
-                <input type="submit" id="login" value="Login" class="submit" data-translate="login" />
-            </form>
+                    <input type="submit" id="login" value="Login" class="submit" data-translate="login" />
+                </form>
 
-            <section class="content card">
-                <div class="greeting">
-                    <h1 id="toGreet"></h1>
-                    <p data-translate="welcomeMsg">Welcome in the app.</p>
-                </div>
-                <div class="prompt" data-translate="loginPrompt">
-                    <p>Log in to see app's content.</p>
-                </div>
-            </section>
+                <section class="content card-back">
+                    <div class="greeting">
+                        <h1 id="toGreet"></h1>
+                        <p data-translate="welcomeMsg">Welcome in the app.</p>
+                    </div>
+                    <input type="submit" id="logout" value="&laquo; Logout" class="submit" data-translate="logout" />
+                </section>
+            </div>
 
             <script src="jquery-1.11.1.js"></script>
             <script src="Greeter.js"></script>
