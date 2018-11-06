@@ -17,3 +17,15 @@ At the end of the course you get to build your own "mini" library of which you c
 I used the "library" to create a login screen where the user has to enter his desired language, full name and, quite weirdly, his age. The age is used to decide whether to use formal or informal language. The threshold is set at the age of thirty.
 
 All text in the "app" gets translated when the user chooses a different language.
+
+The app stores session data in a cookie so the user does not have to login at a later visit.
+
+### Browser support
+
+In order to practice with ECMAScript 2015 (ES6) and the latest CSS3 specifications this demo app only works in web browsers that support those technologies.
+
+The browser particularly needs to support:
+
+- ES6 `let`, `const` and arrow functions
+- ES6 modules (`import` and `export`)
+- CSS Grid
