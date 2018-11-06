@@ -155,3 +155,8 @@ h6 {
     border-color: orange;
     background-color: orange;
 }
+
+.submit:disabled {
+    border-color: palegoldenrod;
+    background-color: palegoldenrod;
+}
