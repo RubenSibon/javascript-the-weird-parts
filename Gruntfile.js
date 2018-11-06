@@ -16,13 +16,26 @@ module.exports = grunt => {
             }
         },
 
-        copy: {
-            main: {
-                files: [
-                    // includes files within path and its sub-directories
-                    {expand: true, cwd: 'src/', src: ['js/**'], dest: '.'}
-                ],
-            },
+        uglify: {
+            dev: {
+                options: {
+                    mangle: {
+                        reserved: ['jQuery']
+                    }
+                },
+                files: [{
+                    expand: true,
+                    src: ['js/**/*.js', '!js/*.min.js'],
+                    dest: '.',
+                    cwd: 'src/',
+                    rename: function (dst, src) {
+                        // To keep the source js files and make new files as `*.min.js`:
+                        // return dst + '/' + src.replace('.js', '.min.js');
+                        // Or to override to src:
+                        return dst + '/' + src;
+                    }
+                }]
+            }
         },
 
         htmlmin: {
@@ -39,6 +52,6 @@ module.exports = grunt => {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['cssmin', 'copy', 'htmlmin']);
+    grunt.registerTask('default', ['cssmin', 'uglify', 'htmlmin']);
 
 };
