@@ -5,6 +5,8 @@ module.exports = grunt => {
 
     // Project configuration.
     grunt.initConfig({
+
+        // Minify CSS.
         cssmin: {
             target: {
                 files: [{
@@ -16,6 +18,7 @@ module.exports = grunt => {
             }
         },
 
+        // Uglify JS.
         uglify: {
             dev: {
                 options: {
@@ -38,6 +41,7 @@ module.exports = grunt => {
             }
         },
 
+        // Minify HTML.
         htmlmin: {
             dist: {
                 options: {
@@ -48,7 +52,24 @@ module.exports = grunt => {
                     'index.html': 'src/index.html'
                 }
             }
-        }
+        },
+
+        clean: [
+            'css/',
+            'js/',
+            'index.html'
+        ],
+
+        // Watch for changes.
+        watch: {
+            scripts: {
+                files: ['src/**/*.*'],
+                tasks: ['default'],
+                options: {
+                    spawn: false,
+                },
+            },
+        },
     });
 
     // Default task(s).
