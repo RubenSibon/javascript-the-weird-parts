@@ -1,0 +1,1 @@
+export const config={selectors:{card:".card",loginForm:"#loginForm"},state:{loggedIn:!1,currentLanguage:"en"}};

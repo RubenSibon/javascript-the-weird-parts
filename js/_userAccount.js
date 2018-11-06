@@ -1,0 +1,1 @@
+import{config}from"./_config.js";export function resetLogin(){config.state.loggedIn=!1,$(config.selectors.card).removeClass("is-flipped")};
