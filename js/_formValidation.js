@@ -1,6 +1,11 @@
 import {CONFIG} from './_config.js';
-import {translatableStrings} from './_translations.js';
+import {TRANSLATABLE_STRINGS} from './_translations.js';
 
+/**
+ * Check if form is valid.
+ * Currently only checking for input on name fields.
+ * @param {string} formSelector
+ */
 export function formIsValid(formSelector) {
     const form = document.querySelector(formSelector);
 
@@ -22,14 +27,13 @@ export function formIsValid(formSelector) {
 
 /**
  * Display a form error.
- * Currently only checking for input on name fields.
- * @param {boolean} clear
+ * @param {boolean} error
  */
 export function formError(error = true) {
     if (error) {
         // Create new HTML element and text node for an error notice.
         const errorNode = document.createElement('div');
-        const errorText = document.createTextNode(translatableStrings[CONFIG.state.currentLanguage]['formError']);
+        const errorText = document.createTextNode(TRANSLATABLE_STRINGS[CONFIG.state.currentLanguage]['formError']);
 
         // Append error notice to the form.
         errorNode.setAttribute('id', 'formError');
@@ -44,6 +48,11 @@ export function formError(error = true) {
     }
 }
 
+/**
+ * Enable form for submission.
+ * @param {boolean} formSelector
+ * @param {boolean} enable
+ */
 export function formEnable(formSelector, enable = true) {
     const submitButton = document.querySelector(formSelector).querySelector('[type=submit]');
 

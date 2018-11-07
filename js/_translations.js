@@ -1,4 +1,4 @@
-export const translatableStrings = {
+export const TRANSLATABLE_STRINGS = {
     en: {
         formTitle: 'Enter your details:',
         firstName: 'First name',

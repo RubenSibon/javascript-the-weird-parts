@@ -1,5 +1,5 @@
 import {CONFIG} from './_config.js';
-import {translateApp} from './_translateStrings.js';
+import {translateApp} from './_translate.js';
 import {formIsValid, formError, formEnable} from './_formValidation.js';
 import {logIn} from './_userAccount.js';
 

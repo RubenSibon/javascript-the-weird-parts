@@ -1,4 +1,4 @@
-import {translatableStrings} from './_translations.js';
+import {TRANSLATABLE_STRINGS} from './_translations.js';
 
 /**
  * Translate a single string.
@@ -12,11 +12,11 @@ export function translateString(lang, string) {
     let oldString;
 
     // Get translation for string.
-    if (translatableStrings[lang][string] !== null && typeof translatableStrings[lang][string] !== 'undefined') {
-        newString = translatableStrings[lang][string];
+    if (TRANSLATABLE_STRINGS[lang][string] !== null && typeof TRANSLATABLE_STRINGS[lang][string] !== 'undefined') {
+        newString = TRANSLATABLE_STRINGS[lang][string];
     } else {
         // Fallback to English.
-        newString = translatableStrings['en'][string];
+        newString = TRANSLATABLE_STRINGS['en'][string];
     }
 
     if (elementToTranslate) {
@@ -47,7 +47,7 @@ export function translateApp(lang, oneString = false) {
 
     // Translate all translatable strings unless one is specified.
     if (!oneString) {
-        for (const string in translatableStrings[lang]) {
+        for (const string in TRANSLATABLE_STRINGS[lang]) {
             translateString(lang, string);
         }
 

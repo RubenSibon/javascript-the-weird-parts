@@ -25,7 +25,7 @@ module.exports = grunt => {
 
         jsdoc: {
             dist: {
-                src: ['js/*.js', 'js/lib/*.js'],
+                src: ['./js/*.js', './js/lib/*.js'],
                 options: {
                     destination: 'doc'
                 }
