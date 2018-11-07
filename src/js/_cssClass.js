@@ -1,3 +1,5 @@
+export default {addClass, removeClass, toggleClass};
+
 /**
  * Check if class exists on HTML element.
  * @param {string|object} el
@@ -94,7 +96,7 @@ function changeClass(selector, cssClass, change) {
  * @param {string|object} selector
  * @param {string|object} cssClass
  */
-export function addClass(selector, cssClass) {
+function addClass(selector, cssClass) {
     changeClass(selector, cssClass, 'add');
 }
 
@@ -103,7 +105,7 @@ export function addClass(selector, cssClass) {
  * @param {string|object} selector
  * @param {string|object} cssClass
  */
-export function removeClass(selector, cssClass) {
+function removeClass(selector, cssClass) {
     changeClass(selector, cssClass, 'remove');
 }
 
@@ -112,6 +114,6 @@ export function removeClass(selector, cssClass) {
  * @param {string|object} selector
  * @param {string|object} cssClass
  */
-export function toggleClass(selector, cssClass) {
+function toggleClass(selector, cssClass) {
     changeClass(selector, cssClass, 'toggle');
 }
