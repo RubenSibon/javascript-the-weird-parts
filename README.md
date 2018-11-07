@@ -2,7 +2,7 @@
 
 ## About the course
 
-This repository represents my answer to the final project of Anthony Alicea's ['JavaScript: Understanding the Weird Parts' course on Udemy](https://www.udemy.com/understand-javascript/). I took the course in 2017.
+This repository represents my answer to the final project of Anthony Alicea's ['JavaScript: Understanding the Weird Parts' course on Udemy](https://www.udemy.com/share/1000n6A0QZd1lUQ3Q=/). I took the course in 2017.
 
 It is a great course that really helps you to understand JavaScript as a programming language. Anthony explains in a clear and accessible way what some of the scarier topics like 'closures', 'prototypes' and 'this' really mean.
 
