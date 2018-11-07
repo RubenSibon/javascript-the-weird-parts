@@ -1,4 +1,9 @@
-;(function(global, $) {
+// If jQuery does not exist make it an empty object.
+if (!jQuery) {
+    var jQuery = {};
+}
+
+(function(global, $) {
 
     /**
      * Greetr constructor function.
@@ -9,7 +14,7 @@
      */
     var Greetr = function(firstName, lastName, language, age) {
         return new Greetr.init(firstName, lastName, language, age);
-    }
+    };
 
     /** Supported languages. */
     var supportedLangs = ['en', 'es', 'nl'];
@@ -149,20 +154,38 @@
          */
         HTMLGreeting: function(selector, formal) {
             var htmlMsg;
+            var selected;
 
             if (!$) {
-                throw 'jQuery not loaded';
+                // throw 'jQuery not found.';
             }
 
             if (!selector) {
-                throw 'Missing jQuery selector';
+                throw 'Missing selector';
             }
 
             formalLanguage = this.setFormal(formal).isFormal;
 
             htmlMsg = this.greet(formalLanguage);
 
-            $(selector).html(htmlMsg);
+            selected = (function() {
+                try {
+                    return document.querySelectorAll(selector);
+                } catch(error) {
+                    console.error(error);
+                    return document.querySelector(selector);
+                }
+            })();
+
+            // Insert HTML for unique element or a collection of elements.
+            if (selected.length === 1) {
+                selected[0].innerHTML = htmlMsg;
+            } else {
+                for (const element of selected) {
+                    element[0].innerHTML = htmlMsg;
+                }
+            }
+
 
             // Make method chainable.
             return this;
@@ -171,14 +194,14 @@
     };
 
     /**
-     * Init function to instantiate prototype (class), 
+     * Init function to instantiate prototype (class),
      * i.e. the actual object is created here.
-     */ 
+     */
     Greetr.init = function(firstName, lastName, language, age) {
 
         // Use self instead of `this` to avoid confusion with setting stuff on the function constructor.
         var self = this;
-        
+
         self.firstName = firstName || '';
         self.lastName = lastName || '';
         self.language = language || 'en';
@@ -190,7 +213,7 @@
     /**
      * Make Greetr.init refer to the prototype of the function constructor.
      * This way we do not have to use the `new` keyword.
-     */ 
+     */
     Greetr.init.prototype = Greetr.prototype;
 
     /**

@@ -1,10 +1,10 @@
 import {config} from './_config.js';
 import {translatableStrings} from './_translations.js';
 
-export function formValidate(formSelector) {
+export function formIsValid(formSelector) {
     const form = document.querySelector(formSelector);
 
-    // True by default.
+    // True on start.
     let allRequiredHaveValue = true;
 
     // If one required field has no input return false.
@@ -16,6 +16,7 @@ export function formValidate(formSelector) {
         }
     }
 
+    // Return 'true' is all fields have valid input.
     return allRequiredHaveValue;
 }
 
