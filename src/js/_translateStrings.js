@@ -1,6 +1,6 @@
 import {translatableStrings} from './_translations.js';
 
-export default translate;
+export {translate};
 
 /**
  * Translate a single string.

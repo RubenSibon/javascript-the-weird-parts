@@ -1,7 +1,7 @@
 import {config} from './_config.js';
 import {addClass, removeClass} from './_cssClass.js';
 
-export default logIn;
+export {logIn};
 
 /**
  * Reset login.

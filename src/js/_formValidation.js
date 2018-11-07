@@ -1,7 +1,7 @@
 import {config} from './_config.js';
 import {translatableStrings} from './_translations.js';
 
-export default {formIsValid, formError, formEnable};
+export {formIsValid, formError, formEnable};
 
 function formIsValid(formSelector) {
     const form = document.querySelector(formSelector);

@@ -1,4 +1,4 @@
-export default {addClass, removeClass, toggleClass};
+export {addClass, removeClass, toggleClass};
 
 /**
  * Check if class exists on HTML element.
