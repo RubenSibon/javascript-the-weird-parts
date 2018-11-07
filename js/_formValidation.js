@@ -1,5 +1,5 @@
-import {config} from './_config.js';
-import {translatableStrings} from './_translations.js';
+import {CONFIG} from './_config.js';
+// import {translatableStrings} from './_translations.js';
 
 export function formIsValid(formSelector) {
     const form = document.querySelector(formSelector);
@@ -29,7 +29,7 @@ export function formError(error = true) {
     if (error) {
         // Create new HTML element and text node for an error notice.
         const errorNode = document.createElement('div');
-        const errorText = document.createTextNode(translatableStrings[config.state.currentLanguage]['formError']);
+        const errorText = document.createTextNode(translatableStrings[CONFIG.state.currentLanguage]['formError']);
 
         // Append error notice to the form.
         errorNode.setAttribute('id', 'formError');

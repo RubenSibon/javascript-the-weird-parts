@@ -1,4 +1,4 @@
-import {config} from './_config.js';
+import {CONFIG} from './_config.js';
 import {addClass, removeClass} from './_cssClass.js';
 
 /**
@@ -10,11 +10,11 @@ export function logIn(approved) {
     let toRemove;
 
     if (approved) {
-        config.state.loggedIn = true;
+        CONFIG.state.loggedIn = true;
 
-        g.firstName = document.querySelector(config.selectors.loginForm + ' #firstName').value;
-        g.lastName = document.querySelector(config.selectors.loginForm + ' #lastName').value;
-        g.age = document.querySelector(config.selectors.loginForm + ' #age').value;
+        g.firstName = document.querySelector(CONFIG.selectors.loginForm + ' #firstName').value;
+        g.lastName = document.querySelector(CONFIG.selectors.loginForm + ' #lastName').value;
+        g.age = document.querySelector(CONFIG.selectors.loginForm + ' #age').value;
 
         // Call method to display welcome message on page.
         // If user is older than 29 years old pass in true for formal language.
@@ -23,12 +23,12 @@ export function logIn(approved) {
         toAdd = 'is-flipped';
         toRemove = 'is-flippable';
     } else {
-        config.state.loggedIn = false;
+        CONFIG.state.loggedIn = false;
 
         toAdd = 'is-flippable';
         toRemove = 'is-flipped';
     }
 
-    addClass(config.selectors.card, toAdd);
-    removeClass(config.selectors.card, toRemove);
+    addClass(CONFIG.selectors.card, toAdd);
+    removeClass(CONFIG.selectors.card, toRemove);
 }

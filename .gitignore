@@ -1,3 +1,4 @@
 *.css.map
+.cache/
 docs
 node_modules

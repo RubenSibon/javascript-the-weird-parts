@@ -1,6 +1,3 @@
-/**
- * All translatable strings in app's interface.
- */
 export const translatableStrings = {
     en: {
         formTitle: 'Enter your details:',
