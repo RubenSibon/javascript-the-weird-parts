@@ -2,7 +2,7 @@
 
 ## About the course
 
-This repository represents my answer to the final assignment of Anthony Alicea's ['JavaScript: Understanding the Weird Parts' course on Udemy](https://www.udemy.com/understand-javascript/). I took the course in 2017.
+This repository represents my answer to the final project of Anthony Alicea's ['JavaScript: Understanding the Weird Parts' course on Udemy](https://www.udemy.com/understand-javascript/). I took the course in 2017.
 
 It is a great course that really helps you to understand JavaScript as a programming language. Anthony explains in a clear and accessible way what some of the scarier topics like 'closures', 'prototypes' and 'this' really mean.
 
@@ -27,5 +27,4 @@ In order to practice with ECMAScript 2015 (ES6) and the latest CSS3 specificatio
 The browser particularly needs to support:
 
 - ES6 `let`, `const` and arrow functions
-- ES6 modules (`import` and `export`)
 - CSS Grid
