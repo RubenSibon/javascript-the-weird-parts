@@ -1,5 +1,4 @@
 import {App} from './js/app.js';
 
-console.log('hello');
-
+// Instantiate app with Parcel.js
 App();

@@ -1,78 +1,29 @@
 module.exports = grunt => {
 
-    // Load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns.
-    require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Project configuration.
     grunt.initConfig({
 
-        // Minify CSS.
-        cssmin: {
-            target: {
-                files: [{
-                    expand: true,
-                    cwd: 'src/css',
-                    src: ['*.css', '!*.min.css'],
-                    dest: 'css'
-                }]
-            }
-        },
-
-        // Uglify JS.
-        uglify: {
-            dev: {
-                options: {
-                    mangle: {
-                        reserved: ['jQuery']
-                    }
-                },
-                files: [{
-                    expand: true,
-                    src: ['js/**/*.js', '!js/*.min.js'],
-                    dest: '.',
-                    cwd: 'src/',
-                    rename: function (dst, src) {
-                        // To keep the source js files and make new files as `*.min.js`:
-                        // return dst + '/' + src.replace('.js', '.min.js');
-                        // Or to override to src:
-                        return dst + '/' + src;
-                    }
-                }]
-            }
-        },
-
-        // Minify HTML.
-        htmlmin: {
-            dist: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true
-                },
-                files: {
-                    'index.html': 'src/index.html'
-                }
-            }
-        },
-
-        clean: [
-            'css/',
-            'js/',
-            'index.html'
-        ],
-
-        // Watch for changes.
-        watch: {
-            scripts: {
-                files: ['src/**/*.*'],
-                tasks: ['default'],
-                options: {
-                    spawn: false,
-                },
+        // Copy assets.
+        copy: {
+            main: {
+                files: [
+                    // Includes files within path.
+                    {expand: true, src: ['./robots.txt'], dest: 'dist/', filter: 'isFile'},
+                ],
             },
         },
+
+        // Clean compiled assets.
+        clean: [
+            '.cache/',
+            'dist/'
+        ]
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['cssmin', 'uglify', 'htmlmin']);
+    grunt.registerTask('default', ['copy']);
 
 };

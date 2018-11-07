@@ -1,5 +1,4 @@
 import {CONFIG} from './_config.js';
-import {addClass, removeClass} from './_cssClass.js';
 
 /**
  * Reset login.
@@ -29,6 +28,8 @@ export function logIn(approved) {
         toRemove = 'is-flipped';
     }
 
-    addClass(CONFIG.selectors.card, toAdd);
-    removeClass(CONFIG.selectors.card, toRemove);
+    console.log(j);
+
+    j.addClass(CONFIG.selectors.card, toAdd);
+    j.removeClass(CONFIG.selectors.card, toRemove);
 }

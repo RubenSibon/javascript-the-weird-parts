@@ -5,7 +5,7 @@ import {translatableStrings} from './_translations.js';
  * @param {string} lang
  * @param {string} string
  */
-function translateString(lang, string) {
+export function translateString(lang, string) {
     const elementToTranslate = document.querySelector('[data-translate="' + string + '"]');
 
     let newString;
@@ -43,7 +43,7 @@ function translateString(lang, string) {
  * @param {string} lang
  * @param {boolean|string} oneString
  */
-export function translate(lang, oneString = false) {
+export function translateApp(lang, oneString = false) {
 
     // Translate all translatable strings unless one is specified.
     if (!oneString) {

@@ -1,5 +1,5 @@
 import {CONFIG} from './_config.js';
-// import {translatableStrings} from './_translations.js';
+import {translatableStrings} from './_translations.js';
 
 export function formIsValid(formSelector) {
     const form = document.querySelector(formSelector);

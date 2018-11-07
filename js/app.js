@@ -1,21 +1,24 @@
 import {CONFIG} from './_config.js';
-import {translate} from './_translateStrings.js';
+import {translateApp} from './_translateStrings.js';
 import {formIsValid, formError, formEnable} from './_formValidation.js';
 import {logIn} from './_userAccount.js';
 
 export const App = function() {
 
-    console.log(CONFIG);
-    console.log(translate);
-
-    (function(G$) {
+    (function(G$, j$) {
 
         if (!G$) {
             throw 'Greetr library not found.';
         }
 
+        if (!j$) {
+            throw 'jKweerie library not found.';
+        }
+
         // Instantiate Greetr object.
         window.g = G$('John', 'Wick', 'en');
+
+        window.j = j$();
 
         const nameInputSelectors = ['#firstName', '#lastName'];
 
@@ -53,7 +56,7 @@ export const App = function() {
                 g.setLang(event.target.value);
 
                 // Translate interface.
-                translate(event.target.value);
+                translateApp(event.target.value);
             }
         });
 
@@ -94,6 +97,6 @@ export const App = function() {
             logIn(false);
         });
 
-    })(Greetr);
+    })(Greetr, jKweerie);
 
 }
