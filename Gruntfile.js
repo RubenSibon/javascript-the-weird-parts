@@ -2,6 +2,7 @@ module.exports = grunt => {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     // Project configuration.
     grunt.initConfig({
@@ -20,10 +21,19 @@ module.exports = grunt => {
         clean: [
             '.cache/',
             'dist/'
-        ]
+        ],
+
+        jsdoc: {
+            dist: {
+                src: ['js/*.js', 'js/lib/*.js'],
+                options: {
+                    destination: 'doc'
+                }
+            }
+        }
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['copy']);
+    grunt.registerTask('default', ['copy', 'jsdoc']);
 
 };

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Greetr.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Greetr.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// If jQuery does not exist make it an empty object.
+if (!jQuery) {
+    var jQuery = {};
+}
+
+(function(global, $) {
+
+    /**
+     * Greetr constructor function.
+     * @constructor
+     * @param {string} firstName
+     * @param {string} lastName
+     * @param {string} language
+     */
+    var Greetr = function(firstName, lastName, language, age) {
+        return new Greetr.init(firstName, lastName, language, age);
+    };
+
+    /** Supported languages. */
+    var supportedLangs = ['en', 'es', 'nl'];
+
+    /** Whether language is formal or not. */
+    var formalLanguage = false;
+
+    /** Default informal greetings. */
+    var greetings = {
+        en: 'Hello',
+        es: 'Hola',
+        nl: 'Hallo'
+    };
+
+    /** Default formal greetings. */
+    var formalGreeting = {
+        en: 'Greetings',
+        es: 'Saludos',
+        nl: 'Gegroet'
+    };
+
+    /** Logged in messages. */
+    var logMessages = {
+        en: 'Logged in',
+        es: 'Inicio sesion',
+        nl: 'Ingelogd'
+    };
+
+    /**
+     * Methods of Greetr.
+     */
+    Greetr.prototype = {
+
+        /**
+         * Return fullname.
+         */
+        fullName: function() {
+            return this.firstName + ' ' + this.lastName;
+        },
+
+        /**
+         * Validate if a language is supported.
+         */
+        validate: function() {
+            if (supportedLangs.indexOf(this.language) === -1) {
+                throw 'Invalid language.';
+            }
+        },
+
+        /**
+         * Informally greet (default).
+         */
+        greeting: function() {
+            return greetings[this.language] + ' ' + this.firstName + '!';
+        },
+
+        /**
+         * Formally greet (set `formal` to `true`).
+         */
+        formalGreeting: function() {
+            return formalGreeting[this.language] + ', ' + this.fullName() + '.';
+        },
+
+        /**
+         * Greet method. Call either formal or informal greeting methods.
+         * @param {boolean} formal
+         */
+        greet: function(formal) {
+            var msg;
+
+            // Decide whether to call formal or informal greeting.
+            if (formal) {
+                msg = this.formalGreeting();
+            } else {
+                msg = this.greeting();
+            }
+
+            if (console) {
+                this.log();
+            }
+
+            // Make method chainable.
+            return (
+                this,
+                msg
+            );
+        },
+
+        /**
+         * Log fullname to console.
+         */
+        log: function(msg) {
+            if (console) {
+                if (msg) {
+                    console.log(msg);
+                } else {
+                    console.log(logMessages[this.language] + ': ' + this.fullName());
+                }
+            }
+
+            // Make method chainable.
+            return this;
+        },
+
+        /**
+         * Set language that greeting should be returned in.
+         * @param {string} lang
+         */
+        setLang: function(lang) {
+            this.language = lang;
+
+            this.validate();
+
+            // Make method chainable.
+            return this;
+        },
+
+        /**
+         * Set language to formal or informal.
+         * @param {string} lang
+         */
+        setFormal: function(formal) {
+            if (formal.toString() === 'undefined' || formal.toString() === 'true') {
+                this.isFormal = true;
+            } else {
+                this.isFormal = false;
+            }
+
+            // Make method chainable.
+            return this;
+        },
+
+        /**
+         * Insert greeting in HTML.
+         * @param {string} selector
+         * @param {boolean} formal
+         */
+        HTMLGreeting: function(selector, formal) {
+            var htmlMsg;
+            var selected;
+
+            if (!$) {
+                // throw 'jQuery not found.';
+            }
+
+            if (!selector) {
+                throw 'Missing selector';
+            }
+
+            formalLanguage = this.setFormal(formal).isFormal;
+
+            htmlMsg = this.greet(formalLanguage);
+
+            selected = (function() {
+                try {
+                    return document.querySelectorAll(selector);
+                } catch(error) {
+                    console.error(error);
+                    return document.querySelector(selector);
+                }
+            })();
+
+            // Insert HTML for unique element or a collection of elements.
+            if (selected.length === 1) {
+                selected[0].innerHTML = htmlMsg;
+            } else {
+                for (const element of selected) {
+                    element[0].innerHTML = htmlMsg;
+                }
+            }
+
+
+            // Make method chainable.
+            return this;
+        },
+
+    };
+
+    /**
+     * Init function to instantiate prototype (class),
+     * i.e. the actual object is created here.
+     */
+    Greetr.init = function(firstName, lastName, language, age) {
+
+        // Use self instead of `this` to avoid confusion with setting stuff on the function constructor.
+        var self = this;
+
+        self.firstName = firstName || '';
+        self.lastName = lastName || '';
+        self.language = language || 'en';
+        self.age = age || NaN;
+
+        self.validate();
+    };
+
+    /**
+     * Make Greetr.init refer to the prototype of the function constructor.
+     * This way we do not have to use the `new` keyword.
+     */
+    Greetr.init.prototype = Greetr.prototype;
+
+    /**
+     * Attach Greetr to the global object (i.e. "window")
+     * and provide a shorthand `$G` to access it.
+     */
+    global.Greetr = global.G$ = Greetr;
+
+})(window, jQuery);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Nov 07 2018 11:37:49 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
