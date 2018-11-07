@@ -1,9 +1,7 @@
 import {config} from './_config.js';
 import {translatableStrings} from './_translations.js';
 
-export {formIsValid, formError, formEnable};
-
-function formIsValid(formSelector) {
+export function formIsValid(formSelector) {
     const form = document.querySelector(formSelector);
 
     // True on start.
@@ -27,7 +25,7 @@ function formIsValid(formSelector) {
  * Currently only checking for input on name fields.
  * @param {boolean} clear
  */
-function formError(error = true) {
+export function formError(error = true) {
     if (error) {
         // Create new HTML element and text node for an error notice.
         const errorNode = document.createElement('div');
@@ -46,7 +44,7 @@ function formError(error = true) {
     }
 }
 
-function formEnable(formSelector, enable = true) {
+export function formEnable(formSelector, enable = true) {
     const submitButton = document.querySelector(formSelector).querySelector('[type=submit]');
 
     if (enable) {

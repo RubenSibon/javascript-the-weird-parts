@@ -1,7 +1,5 @@
 import {translatableStrings} from './_translations.js';
 
-export {translate};
-
 /**
  * Translate a single string.
  * @param {string} lang
@@ -45,7 +43,7 @@ function translateString(lang, string) {
  * @param {string} lang
  * @param {boolean|string} oneString
  */
-function translate(lang, oneString = false) {
+export function translate(lang, oneString = false) {
 
     // Translate all translatable strings unless one is specified.
     if (!oneString) {

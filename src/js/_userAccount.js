@@ -1,13 +1,11 @@
 import {config} from './_config.js';
 import {addClass, removeClass} from './_cssClass.js';
 
-export {logIn};
-
 /**
  * Reset login.
  * @param {boolean} approved
  */
-function logIn(approved) {
+export function logIn(approved) {
     let toAdd;
     let toRemove;
 
